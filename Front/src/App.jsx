@@ -1,4 +1,4 @@
-import Home from "./components/Home";
+import Navbar from "./components/Navbar";
 import "./styles/Style.css";
 import {
   BrowserRouter as Router,
@@ -10,6 +10,7 @@ import {
 function App() {
   return (
     <BrowserRouter>
+      <Navbar />
       <Routes>
         <Route path="/" element={""}></Route>
       </Routes>
