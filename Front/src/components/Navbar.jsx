@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -9,25 +10,28 @@ function Navbar() {
         </div>
 
         <div className="flex gap-8 text-white font-medium">
-          <a href="#" className="relative group transition duration-300">
+          <Link to="/" className="relative group transition duration-300">
             خانه
             <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full"></span>
-          </a>
+          </Link>
 
-          <a href="#" className="relative group transition duration-300">
+          <Link to="/" className="relative group transition duration-300">
             جستجو
             <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full"></span>
-          </a>
+          </Link>
 
-          <a href="#" className="relative group transition duration-300">
+          <Link to="/Login" className="relative group transition duration-300">
             ورود
             <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full"></span>
-          </a>
+          </Link>
 
-          <a href="#" className="relative group transition duration-300">
+          <Link
+            to="/Register"
+            className="relative group transition duration-300"
+          >
             ثبت نام
             <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full"></span>
-          </a>
+          </Link>
         </div>
       </div>
     </nav>
