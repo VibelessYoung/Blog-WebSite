@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import bgImage from "../../assets/Images/bg-r.jpg";
 
 function Register() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = {
+      name,
+      password,
+      email,
+    };
+    console.log(data);
+  };
   return (
     <div className="relative min-h-screen overflow-hidden flex items-center justify-center">
       <div
@@ -17,13 +29,15 @@ function Register() {
             ایجاد حساب کاربری
           </h2>
 
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label className="block text-white mb-2 text-sm">نام کامل</label>
               <input
                 type="text"
                 placeholder="نام خود را وارد کنید"
                 className="w-full px-4 py-3 rounded-xl bg-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+                onChange={(e) => setName(e.target.value)}
+                name="name"
               />
             </div>
 
@@ -33,6 +47,8 @@ function Register() {
                 type="email"
                 placeholder="example@email.com"
                 className="w-full px-4 py-3 rounded-xl bg-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+                onChange={(e) => setEmail(e.target.value)}
+                name="email"
               />
             </div>
 
@@ -42,6 +58,8 @@ function Register() {
                 type="password"
                 placeholder="********"
                 className="w-full px-4 py-3 rounded-xl bg-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+                onChange={(e) => setPassword(e.target.value)}
+                name="password"
               />
             </div>
 
