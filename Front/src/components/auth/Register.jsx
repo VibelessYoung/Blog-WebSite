@@ -1,18 +1,27 @@
 import React, { useState } from "react";
 import bgImage from "../../assets/Images/bg-r.jpg";
+import axios from "axios";
+import { VscGlobe } from "react-icons/vsc";
 
 function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
       name,
       password,
       email,
     };
-    console.log(data);
+    await axios
+      .post("http://localhost:8000/api/register", data)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <div className="relative min-h-screen overflow-hidden flex items-center justify-center">
