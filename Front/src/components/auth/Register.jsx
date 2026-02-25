@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import bgImage from "../../assets/Images/bg-r.jpg";
 import axios from "axios";
-import { VscGlobe } from "react-icons/vsc";
+import Swal from "sweetalert2";
 
 function Register() {
   const [name, setName] = useState("");
@@ -16,7 +16,12 @@ function Register() {
     try {
       const res = await axios.post("http://localhost:8000/api/register", data);
       if (res.data.status === 200) {
-        console.log(res.data.messages);
+        Swal.fire({
+          icon: "success",
+          title: "ثبت ‌نام موفق",
+          text: res.data.messages || "حساب شما با موفقیت ایجاد شد",
+          confirmButtonText: "باشه",
+        });
         setError({});
       } else {
         setError(res.data.validation_errors);
