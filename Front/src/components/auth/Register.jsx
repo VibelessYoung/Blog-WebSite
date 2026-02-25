@@ -7,7 +7,7 @@ function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState();
+  const [error, setError] = useState({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,8 +17,9 @@ function Register() {
       const res = await axios.post("http://localhost:8000/api/register", data);
       if (res.data.status === 200) {
         console.log(res.data.messages);
+        setError({});
       } else {
-        console.log("مشکل در ثبت‌نام:", res.data);
+        setError(res.data.validation_errors);
       }
     } catch (err) {
       console.log(
@@ -53,6 +54,9 @@ function Register() {
                 onChange={(e) => setName(e.target.value)}
                 name="name"
               />
+              {error.name && (
+                <small className="text-red-500 mt-1">{error.name[0]}</small>
+              )}
             </div>
 
             <div>
@@ -64,6 +68,9 @@ function Register() {
                 onChange={(e) => setEmail(e.target.value)}
                 name="email"
               />
+              {error.email && (
+                <small className="text-red-500 mt-1">{error.email[0]}</small>
+              )}
             </div>
 
             <div>
@@ -75,6 +82,9 @@ function Register() {
                 onChange={(e) => setPassword(e.target.value)}
                 name="password"
               />
+              {error.password && (
+                <small className="text-red-500 mt-1">{error.password[0]}</small>
+              )}
             </div>
 
             <button
