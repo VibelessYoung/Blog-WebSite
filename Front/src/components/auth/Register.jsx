@@ -16,7 +16,7 @@ function Register() {
     try {
       const res = await axios.post("http://localhost:8000/api/register", data);
       if (res.data.status === 200) {
-        console.log(res.data.messages); // اینجا پیام لاگ می‌شه
+        console.log(res.data.messages);
       } else {
         console.log("مشکل در ثبت‌نام:", res.data);
       }
