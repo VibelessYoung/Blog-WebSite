@@ -7,22 +7,27 @@ function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = {
-      name,
-      password,
-      email,
-    };
-    await axios
-      .post("http://localhost:8000/api/register", data)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const data = { name, email, password };
+
+    try {
+      const res = await axios.post("http://localhost:8000/api/register", data);
+      if (res.data.status === 200) {
+        console.log(res.data.messages); // اینجا پیام لاگ می‌شه
+      } else {
+        console.log("مشکل در ثبت‌نام:", res.data);
+      }
+    } catch (err) {
+      console.log(
+        "خطا در درخواست:",
+        err.response ? err.response.data : err.message,
+      );
+    }
   };
+
   return (
     <div className="relative min-h-screen overflow-hidden flex items-center justify-center">
       <div
