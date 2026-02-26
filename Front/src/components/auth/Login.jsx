@@ -1,7 +1,26 @@
 import React from "react";
-import bgImage from "../../assets/Images/bg-l.jpg";
+import bgImage from "../../assets/Images/bg-r.jpg";
+import { useState } from "react";
+import axios from "axios";
 
 function Register() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const data = { email, password };
+    axios.get("http://localhost:8000/sanctum/csrf-cookie").then((respone) => {
+      axios
+        .post("http://localhost:8000/api/login", data)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+  };
   return (
     <div className="relative min-h-screen overflow-hidden flex items-center justify-center">
       <div
@@ -14,16 +33,17 @@ function Register() {
       <div className="relative z-10 w-full max-w-md mx-4">
         <div className="backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl rounded-2xl p-8 sm:p-10">
           <h2 className="text-3xl font-bold text-white text-center mb-8">
-            ایجاد حساب کاربری
+            ورود به حساب کاربری
           </h2>
 
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
-              <label className="block text-white mb-2 text-sm">نام کامل</label>
+              <label className="block text-white mb-2 text-sm">ایمیل</label>
               <input
-                type="text"
-                placeholder="نام خود را وارد کنید"
+                type="email"
+                placeholder="ایمیل خود را وارد کنید"
                 className="w-full px-4 py-3 rounded-xl bg-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
@@ -33,6 +53,7 @@ function Register() {
                 type="password"
                 placeholder="********"
                 className="w-full px-4 py-3 rounded-xl bg-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
 
