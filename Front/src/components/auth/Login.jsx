@@ -2,6 +2,7 @@ import React from "react";
 import bgImage from "../../assets/Images/bg-r.jpg";
 import { useState } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -10,16 +11,40 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = { email, password };
-    axios.get("http://localhost:8000/sanctum/csrf-cookie").then((respone) => {
-      axios
-        .post("http://localhost:8000/api/login", data)
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
+
+    try {
+      await axios.get("/sanctum/csrf-cookie");
+
+      const res = await axios.post("http://localhost:8000/api/login", data);
+      console.log(res);
+
+      if (res.data.status === 200) {
+        localStorage.setItem("auth_token", res.data.token);
+        localStorage.setItem("auth_name", res.data.username);
+        localStorage.setItem("auth_userid", res.data.user_id);
+        Swal.fire({
+          icon: "success",
+          title: "ورود موفقیت آمیز بود",
+          text: res.data.message,
+          confirmButtonText: "باشه",
         });
-    });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "خطا",
+          text: res.data.message,
+          confirmButtonText: "باشه",
+        });
+      }
+    } catch (err) {
+      console.log(err);
+      Swal.fire({
+        icon: "error",
+        title: "خطای سرور",
+        text: "مشکلی در ارتباط با سرور پیش آمده",
+        confirmButtonText: "باشه",
+      });
+    }
   };
   return (
     <div className="relative min-h-screen overflow-hidden flex items-center justify-center">
@@ -61,7 +86,7 @@ function Register() {
               type="submit"
               className="w-full py-3 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold hover:scale-105 hover:shadow-xl transition duration-300"
             >
-              ثبت‌نام
+              ورود
             </button>
           </form>
         </div>

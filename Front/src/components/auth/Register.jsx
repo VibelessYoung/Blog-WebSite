@@ -14,7 +14,7 @@ function Register() {
     const data = { name, email, password };
 
     try {
-      const res = await axios.post("http://localhost:8000/api/register", data);
+      const res = await axios.post("/api/register", data);
       if (res.data.status === 200) {
         Swal.fire({
           icon: "success",
