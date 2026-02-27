@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import bgImage from "../../assets/Images/bg-r.jpg";
+import bgImage from "../../assets/Images/bg-l.jpg";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { Navigate, useNavigate } from "react-router-dom";
