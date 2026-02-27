@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function Navbar() {
   const [menu, setMenu] = useState(false);
+  const navigate = useNavigate();
   const Logout = (e) => {
     e.preventDefault();
     localStorage.clear();
+    navigate("/Login");
   };
   return (
     <nav className="fixed top-0 left-0 w-full backdrop-blur-md bg-white/10 border-b border-white/20 shadow-lg z-50">
