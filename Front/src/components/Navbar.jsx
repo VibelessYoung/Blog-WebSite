@@ -77,7 +77,7 @@ function Navbar() {
           </svg>
         </button>
         {menu && (
-          <div className="absolute top-14 right-6 w-40 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg shadow-lg flex flex-col text-white sm:hidden">
+          <div className="absolute top-14 right-6 w-40 bg-white/20 backdrop-blur-md border border-white/20 rounded-lg shadow-lg flex flex-col text-white sm:hidden">
             <Link
               to="/"
               className="px-4 py-2 hover:bg-white/20 transition"
@@ -108,6 +108,13 @@ function Navbar() {
               onClick={() => setMenu(false)}
             >
               ثبت نام
+            </Link>
+            <Link
+              onClick={Logout}
+              to=""
+              className="px-4 py-2 hover:bg-white/20 transition"
+            >
+              خروج
             </Link>
           </div>
         )}
