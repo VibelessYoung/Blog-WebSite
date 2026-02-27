@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Navigate, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 function Navbar() {
   const [menu, setMenu] = useState(false);
   const navigate = useNavigate();
   const Logout = (e) => {
     e.preventDefault();
+    Cookies.remove("token");
     localStorage.clear();
     navigate("/Login");
   };
