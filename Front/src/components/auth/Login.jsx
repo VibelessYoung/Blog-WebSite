@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import { Navigate, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
-function Register() {
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -23,8 +23,8 @@ function Register() {
 
       if (res.data.status === 200) {
         Cookies.set("token", res.data.token);
-        Cookies.set("auth_name", res.data.username);
-        Cookies.set("auth_userid", res.data.user_id);
+        localStorage.setItem("user_name", res.data.username);
+        localStorage.setItem("auth_userid", res.data.user_id);
         Swal.fire({
           icon: "success",
           title: "ورود موفقیت آمیز بود",
@@ -32,6 +32,7 @@ function Register() {
           confirmButtonText: "باشه",
         });
         navigate("/");
+        window.location.reload();
       } else {
         Swal.fire({
           icon: "error",
@@ -99,4 +100,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default Login;

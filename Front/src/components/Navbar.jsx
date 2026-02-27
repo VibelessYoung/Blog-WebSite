@@ -5,11 +5,15 @@ import Cookies from "js-cookie";
 
 function Navbar() {
   const [menu, setMenu] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    !!localStorage.getItem("user_name"),
+  );
   const navigate = useNavigate();
   const Logout = (e) => {
     e.preventDefault();
     Cookies.remove("token");
     localStorage.clear();
+    setIsLoggedIn(false);
     navigate("/Login");
   };
   return (
@@ -19,39 +23,54 @@ function Navbar() {
           BlogSite
         </div>
 
-        <div className="hidden sm:flex items-center gap-8 text-white font-medium ml-auto">
-          <Link to="/" className="relative group transition duration-300">
-            خانه
-            <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full"></span>
-          </Link>
-
-          <Link to="/" className="relative group transition duration-300">
-            جستجو
-            <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full"></span>
-          </Link>
-
-          <Link to="/Login" className="relative group transition duration-300">
-            ورود
-            <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full"></span>
-          </Link>
-
-          <Link
-            to="/Register"
-            className="relative group transition duration-300"
-          >
-            ثبت نام
-            <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full"></span>
-          </Link>
-
-          <Link
-            onClick={Logout}
-            to=""
-            className="relative group transition duration-300"
-          >
-            خروج
-            <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full"></span>
-          </Link>
-        </div>
+        {isLoggedIn ? (
+          <>
+            <div className="hidden sm:flex items-center gap-8 text-white font-medium ml-auto">
+              <Link to="/" className="relative group transition duration-300">
+                خانه
+                <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full"></span>
+              </Link>
+              <Link to="/" className="relative group transition duration-300">
+                جستجو
+                <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full"></span>
+              </Link>
+              <Link
+                onClick={Logout}
+                to=""
+                className="px-4 py-2 hover:bg-white/20 transition"
+              >
+                خروج
+              </Link>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="hidden sm:flex items-center gap-8 text-white font-medium ml-auto">
+              <Link to="/" className="relative group transition duration-300">
+                خانه
+                <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full"></span>
+              </Link>
+              <Link to="/" className="relative group transition duration-300">
+                جستجو
+                <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full"></span>
+              </Link>
+              <Link
+                to="/Login"
+                className="relative group transition duration-300"
+              >
+                ورود
+                <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full"></span>
+              </Link>
+              <Link
+                to="/Register"
+                className="relative group transition duration-300"
+              >
+                ثبت نام
+                <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full"></span>
+              </Link>
+            </div>
+          </>
+        )}
         <button onClick={() => setMenu((prev) => !prev)} className="sm:hidden">
           <svg
             xmlns="http://www.w3.org/2000/svg"
