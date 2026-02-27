@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import bgImage from "../../assets/Images/bg-r.jpg";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState({});
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,6 +24,7 @@ function Register() {
           text: res.data.messages || "حساب شما با موفقیت ایجاد شد",
           confirmButtonText: "باشه",
         });
+        navigate("/Login");
         setError({});
       } else {
         setError(res.data.validation_errors);
