@@ -4,6 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { Navigate, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -21,9 +22,9 @@ function Register() {
       console.log(res);
 
       if (res.data.status === 200) {
-        localStorage.setItem("auth_token", res.data.token);
-        localStorage.setItem("auth_name", res.data.username);
-        localStorage.setItem("auth_userid", res.data.user_id);
+        Cookies.set("token", res.data.token);
+        Cookies.set("auth_name", res.data.username);
+        Cookies.set("auth_userid", res.data.user_id);
         Swal.fire({
           icon: "success",
           title: "ورود موفقیت آمیز بود",
