@@ -3,10 +3,12 @@ import bgImage from "../../assets/Images/bg-r.jpg";
 import { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,6 +30,7 @@ function Register() {
           text: res.data.message,
           confirmButtonText: "باشه",
         });
+        navigate("/");
       } else {
         Swal.fire({
           icon: "error",
