@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
   const [menu, setMenu] = useState(false);
+  const Logout = (e) => {
+    e.preventDefault();
+    localStorage.clear();
+  };
   return (
     <nav className="fixed top-0 left-0 w-full backdrop-blur-md bg-white/10 border-b border-white/20 shadow-lg z-50">
       <div className="max-w-6xl mx-auto px-6 py-3 flex justify-between items-center">
@@ -31,6 +35,15 @@ function Navbar() {
             className="relative group transition duration-300"
           >
             ثبت نام
+            <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full"></span>
+          </Link>
+
+          <Link
+            onClick={Logout}
+            to=""
+            className="relative group transition duration-300"
+          >
+            خروج
             <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full"></span>
           </Link>
         </div>
