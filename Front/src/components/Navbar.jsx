@@ -28,6 +28,10 @@ function Navbar() {
             خانه
             <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full"></span>
           </Link>
+          <Link to="/Blogs" className="relative group transition duration-300">
+            بلاگ ها
+            <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full"></span>
+          </Link>
           <Link to="/" className="relative group transition duration-300">
             جستجو
             <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full"></span>
