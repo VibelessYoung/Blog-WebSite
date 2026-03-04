@@ -34,21 +34,23 @@ function Navbar() {
           </Link>
 
           {isLoggedIn ? (
-            <button
-              onClick={Logout}
-              className="hover:text-purple-900 transition"
-            >
-              خروج
-            </button>
+            <>
+              <Link to="/Create" className="hover:text-purple-900 transition">
+                ارسال پست
+              </Link>
+              <button
+                onClick={Logout}
+                className="hover:text-purple-900 transition"
+              >
+                خروج
+              </button>
+            </>
           ) : (
             <>
               <Link to="/Login" className="hover:text-purple-900 transition">
                 ورود
               </Link>
-              <Link
-                to="/Register"
-                className="hover:text-purple-900 transition"
-              >
+              <Link to="/Register" className="hover:text-purple-900 transition">
                 ثبت نام
               </Link>
             </>
@@ -100,15 +102,20 @@ function Navbar() {
             </Link>
 
             {isLoggedIn ? (
-              <button
-                onClick={() => {
-                  Logout();
-                  setMenu(false);
-                }}
-                className="px-4 py-3 hover:bg-white/20"
-              >
-                خروج
-              </button>
+              <>
+                <Link to="/Create" className="hover:text-purple-900 transition">
+                  ارسال پست
+                </Link>
+                <button
+                  onClick={() => {
+                    Logout();
+                    setMenu(false);
+                  }}
+                  className="px-4 py-3 hover:bg-white/20"
+                >
+                  خروج
+                </button>
+              </>
             ) : (
               <>
                 <Link

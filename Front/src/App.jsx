@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import "./styles/Style.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import bgImageMain from "./assets/Images/bg-l.jpg";
+import Create from "./components/Create";
 
 axios.defaults.baseURL = "http://localhost:8000";
 
@@ -16,12 +17,15 @@ function App() {
     >
       <div className="absolute inset-0 bg-black/60"></div>
       {location.pathname === "/" && (
-        <h1 className="sm:text-9xl text-6xl font-black text-purple-500 animate-pulse text-center" style={{
-      position: "absolute",
-      top: "50%",
-      left: "50%",
-      transform: "translate(-50%, -50%)",
-    }}>
+        <h1
+          className="sm:text-9xl text-6xl font-black text-purple-500 animate-pulse text-center"
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        >
           welcome
         </h1>
       )}
@@ -31,6 +35,7 @@ function App() {
           <Routes>
             <Route path="/Register" element={<Register />} />
             <Route path="/Login" element={<Login />} />
+            <Route path="/Create" element={<Create />} />
           </Routes>
         </div>
       </BrowserRouter>
