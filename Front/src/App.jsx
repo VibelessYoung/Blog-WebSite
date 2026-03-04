@@ -6,6 +6,7 @@ import "./styles/Style.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import bgImageMain from "./assets/Images/bg-l.jpg";
 import Create from "./components/Create";
+import Blogs from "./components/pages/Blogs";
 
 axios.defaults.baseURL = "http://localhost:8000";
 
@@ -33,6 +34,7 @@ function App() {
         <div className="relative z-10">
           <Navbar />
           <Routes>
+            <Route path="/Blogs" element={<Blogs />} />
             <Route path="/Register" element={<Register />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/Create" element={<Create />} />
