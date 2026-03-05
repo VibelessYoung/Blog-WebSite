@@ -98,6 +98,13 @@ function Navbar() {
               خانه
             </Link>
             <Link
+              to="/Blogs"
+              className="px-4 py-3 hover:bg-white/20"
+              onClick={() => setMenu(false)}
+            >
+              بلاگ ها
+            </Link>
+            <Link
               to="/"
               className="px-4 py-3 hover:bg-white/20"
               onClick={() => setMenu(false)}
