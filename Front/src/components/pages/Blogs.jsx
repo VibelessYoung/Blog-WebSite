@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import bgImage from "../../assets/Images/bg-l.jpg";
-import bgTest from "../../assets/Images/bg-r.jpg";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 function Blogs() {
@@ -36,9 +36,11 @@ function Blogs() {
               <p className="font-medium">نویسنده : {post.user.name}</p>
             </div>
             <div className="p-3">
-              <button className="w-full self-center py-2 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold hover:scale-105 hover:shadow-xl transition duration-300">
-                مشاهده
-              </button>
+              <Link to={`/BlogDetail/${post.id}`}>
+                <button className="w-full self-center py-2 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold hover:scale-105 hover:shadow-xl transition duration-300">
+                  مشاهده
+                </button>
+              </Link>
             </div>
           </div>
         );

@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import bgImageMain from "./assets/Images/bg-l.jpg";
 import Create from "./components/Create";
 import Blogs from "./components/pages/Blogs";
+import BlogsDetail from "./components/pages/BlogsDetail";
 
 axios.defaults.baseURL = "http://localhost:8000";
 
@@ -38,6 +39,7 @@ function App() {
             <Route path="/Register" element={<Register />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/Create" element={<Create />} />
+            <Route path="/BlogDetail/:id" element={<BlogsDetail />} />
           </Routes>
         </div>
       </BrowserRouter>
