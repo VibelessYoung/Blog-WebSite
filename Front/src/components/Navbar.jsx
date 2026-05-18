@@ -85,6 +85,12 @@ function Navbar() {
                     >
                       ارسال پست
                     </Link>
+                    <Link
+                      to="/blog/MyBlogs"
+                      className="px-4 py-2.5 rounded-2xl text-sm font-medium text-gray-200 hover:text-white hover:bg-white/10 transition-all duration-300"
+                    >
+                      بلاگ های من
+                    </Link>
 
                     <button
                       onClick={Logout}
@@ -189,6 +195,13 @@ function Navbar() {
                       className="block rounded-2xl px-4 py-3 text-gray-200 hover:text-white hover:bg-white/10 transition-all duration-300"
                     >
                       ارسال پست
+                    </Link>
+                    <Link
+                      to="/blog/MyBlogs"
+                      onClick={() => setMenu(false)}
+                      className="block rounded-2xl px-4 py-3 text-gray-200 hover:text-white hover:bg-white/10 transition-all duration-300"
+                    >
+                      بلاگ های من
                     </Link>
 
                     <button
