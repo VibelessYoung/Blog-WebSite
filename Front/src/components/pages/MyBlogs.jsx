@@ -2,23 +2,38 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import bgImage from "../../assets/Images/bg-l.jpg";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function MyBlogs() {
   const handleClick = async (id) => {
     await axios.delete(`/api/blog/${id}`).then((res) => {
-      console.log(res);
+      if (res.data.status === 200) {
+        Swal.fire({
+          icon: "success",
+          title: "حذف موفقیت آمیز بود",
+          text: res.data.message,
+          confirmButtonText: "باشه",
+        });
+        loadData();
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "خطا",
+          text: res.data.message,
+          confirmButtonText: "باشه",
+        });
+        loadData();
+      }
+    });
+  };
+  const loadData = async () => {
+    let id = localStorage.getItem("auth_userid");
+    await axios.get(`/api/blog/${id}`).then((res) => {
+      setData(res.data);
     });
   };
   const [data, setData] = useState([]);
   useEffect(() => {
-    const loadData = async () => {
-      let id = localStorage.getItem("auth_userid");
-      await axios.get(`/api/blog/${id}`).then((res) => {
-        setData(res.data);
-        console.log("axios data:", res.data);
-console.log("status:", res.status);
-      });
-    };
     loadData();
   }, []);
   return (
