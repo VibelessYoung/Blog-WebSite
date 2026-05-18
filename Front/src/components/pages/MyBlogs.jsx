@@ -107,9 +107,11 @@ function MyBlogs() {
 
                   {/* Button */}
                   <div className="mt-6">
-                    <button className="group/btn mb-4 relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-green-600 via-green-600 to-cyan-600 px-5 py-3.5 text-white font-bold shadow-xl shadow-purple-900/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-purple-900/50 active:scale-[0.98]">
-                      ویرایش
-                    </button>
+                    <Link to={`/blog/UpdateBlog/${post.id}`}>
+                      <button className="group/btn mb-4 relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-green-600 via-green-600 to-cyan-600 px-5 py-3.5 text-white font-bold shadow-xl shadow-purple-900/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-purple-900/50 active:scale-[0.98]">
+                        ویرایش
+                      </button>
+                    </Link>
                     <button
                       onClick={() => handleClick(post.id)}
                       className="group/btn mb-4 relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-orange-600 via-red-600 to-orange-600 px-5 py-3.5 text-white font-bold shadow-xl shadow-purple-900/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-purple-900/50 active:scale-[0.98]"

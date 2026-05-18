@@ -11,6 +11,7 @@ import BlogsDetail from "./components/pages/BlogsDetail";
 import "./styles/Style.css";
 import bgImageMain from "./assets/Images/bg-l.jpg";
 import MyBlogs from "./components/pages/MyBlogs";
+import Update from "./components/pages/Update";
 
 // Axios Configuration
 axios.defaults.baseURL = "http://localhost:8000";
@@ -73,6 +74,7 @@ function AppContent() {
             <Route path="/Create" element={<Create />} />
             <Route path="/BlogDetail/:id" element={<BlogsDetail />} />
             <Route path="/blog/MyBlogs" element={<MyBlogs />} />
+            <Route path="/blog/UpdateBlog/:id" element={<Update />} />
           </Routes>
         </main>
       </div>
