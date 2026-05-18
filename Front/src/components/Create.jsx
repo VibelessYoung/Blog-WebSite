@@ -33,12 +33,12 @@ function Create() {
           navigate("/");
         } else {
           setError(res.data.errors);
-          // Swal.fire({
-          //   icon: "error",
-          //   title: "خطا",
-          //   text: res.data.message,
-          //   confirmButtonText: "باشه",
-          // });
+          Swal.fire({
+            icon: "error",
+            title: "خطا",
+            text: res.data.message,
+            confirmButtonText: "باشه",
+          });
         }
       })
       .catch(() => {
