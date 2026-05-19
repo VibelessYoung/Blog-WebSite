@@ -5,6 +5,12 @@ import axios from "axios";
 
 function Blogs() {
   const [data, setData] = useState([]);
+  const [visible, setVisible] = useState(3);
+  const showMore = () => {
+    setVisible((value) => {
+      value + 3;
+    });
+  };
   useEffect(() => {
     const handlePost = async () => {
       const res = axios.get("/api/view-blog").then((res) => {
@@ -43,7 +49,7 @@ function Blogs() {
 
         {/* Blog Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
-          {data.map((post) => {
+          {data.slice(0, visible).map((post) => {
             return (
               <div
                 key={post.id}
@@ -98,6 +104,12 @@ function Blogs() {
             );
           })}
         </div>
+        <button
+          onClick={showMore}
+          className="w-full mt-6 overflow-hidden rounded-2xl bg-gradient-to-r from-cyan-600 via-green-600 to-blue-600 px-5 py-3.5 text-white font-bold shadow-xl shadow-purple-900/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-purple-900/50 active:scale-[0.98]"
+        >
+          نمایش بیشتر
+        </button>
 
         {/* Empty State */}
         {data.length === 0 && (
