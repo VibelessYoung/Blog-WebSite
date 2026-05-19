@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import bgImage from "../../assets/Images/bg-l.jpg";
+import Comments from "../comments";
 
 function BlogsDetail() {
   const [singleData, setSingleData] = useState();
@@ -83,6 +84,7 @@ function BlogsDetail() {
         <div className="flex justify-center mt-8">
           <div className="h-1 w-40 rounded-full bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-70" />
         </div>
+        <Comments />
       </div>
     </div>
   );
