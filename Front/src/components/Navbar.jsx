@@ -67,7 +67,7 @@ function Navbar() {
                 </Link>
 
                 <Link
-                  to="/"
+                  to="/Search"
                   className="px-4 py-2.5 rounded-2xl text-sm font-medium text-gray-200 hover:text-white hover:bg-white/10 transition-all duration-300"
                 >
                   جستجو
@@ -178,7 +178,7 @@ function Navbar() {
                 </Link>
 
                 <Link
-                  to="/"
+                  to="/Search"
                   onClick={() => setMenu(false)}
                   className="block rounded-2xl px-4 py-3 text-gray-200 hover:text-white hover:bg-white/10 transition-all duration-300"
                 >
