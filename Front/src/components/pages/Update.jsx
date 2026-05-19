@@ -1,6 +1,55 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import bgImage from "../../assets/Images/bg-l.jpg";
+import { Navigate, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function Update() {
+  const [image, setImage] = useState([]);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [data, setData] = useState([]);
+  const [error, setError] = useState([]);
+  const { id } = useParams();
+  const navigate = useNavigate();
+  useEffect(() => {
+    const handleData = async () => {
+      await axios.get(`api/blog/edit/${id}`).then((res) => {
+        setData(res.data);
+        setImage(res.data.image);
+        setTitle(res.data.title);
+        setDescription(res.data.description);
+      });
+    };
+    handleData();
+  }, []);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let formData = new FormData();
+    formData.append("image", image);
+    formData.append("title", title);
+    formData.append("description", description);
+    await axios.post(`/api/blog/update/${id}`, formData).then((res) => {
+      if (res.data.status === 200) {
+        Swal.fire({
+          icon: "success",
+          title: "ویرایش پست موفق",
+          text: res.data.messages || "پست شما با موفقیت ویرایش شد",
+          confirmButtonText: "باشه",
+        });
+        navigate("/blog/MyBlogs");
+        setError({});
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "خطا",
+          text: res.data.message,
+          confirmButtonText: "باشه",
+        });
+      }
+    });
+  };
   return (
     <div className="relative min-h-screen overflow-hidden px-4 py-16 sm:px-6 lg:px-8 flex items-center justify-center">
       {/* Background Image */}
@@ -20,8 +69,8 @@ function Update() {
       {/* Form Container */}
       <div className="relative z-10 w-full max-w-3xl">
         <form
-          dir="rtl"
           onSubmit={handleSubmit}
+          dir="rtl"
           className="overflow-hidden rounded-3xl border border-white/10 bg-white/10 backdrop-blur-2xl shadow-[0_25px_80px_rgba(0,0,0,0.45)]"
         >
           {/* Top Accent Line */}
@@ -68,6 +117,10 @@ function Update() {
                     file:cursor-pointer
                     cursor-pointer"
                   />
+                  <img
+                    className="rounded-2xl mt-3"
+                    src={`http://localhost:8000/uploads/blog/${data.image}`}
+                  />
                 </div>
 
                 {error?.image && (
@@ -86,6 +139,7 @@ function Update() {
                 <input
                   type="text"
                   name="title"
+                  defaultValue={data.title}
                   placeholder="عنوان جذاب مقاله را وارد کنید..."
                   onChange={(e) => setTitle(e.target.value)}
                   className="w-full rounded-2xl border border-white/10 bg-white/10 px-4 py-3.5 text-white placeholder-gray-400 outline-none transition-all duration-300 focus:border-purple-400 focus:bg-white/15 focus:ring-4 focus:ring-purple-500/20"
@@ -105,6 +159,7 @@ function Update() {
                 </label>
 
                 <textarea
+                  defaultValue={data.description}
                   rows="8"
                   name="description"
                   placeholder="متن کامل مقاله خود را اینجا بنویسید..."
