@@ -22,7 +22,7 @@ function Blogs() {
           setData(res.data.blog);
         })
         .finally(() => {
-          setLoading(false); // پایان لودینگ
+          setLoading(false);
         });
     };
     handlePost();
