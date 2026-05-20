@@ -7,12 +7,15 @@ import Navbar from "./components/Navbar";
 import Create from "./components/Create";
 import Blogs from "./components/pages/Blogs";
 import BlogsDetail from "./components/pages/BlogsDetail";
+import AuthCheck from "./components/AuthCheck";
+import Protected from "./components/Protected";
 
 import "./styles/Style.css";
 import bgImageMain from "./assets/Images/bg-l.jpg";
 import MyBlogs from "./components/pages/MyBlogs";
 import Update from "./components/pages/Update";
 import Search from "./components/pages/Search";
+import Page404 from "./components/pages/Page404";
 
 // Axios Configuration
 axios.defaults.baseURL = "http://localhost:8000";
@@ -67,16 +70,21 @@ function AppContent() {
             <Route path="/" element={<div />} />
 
             {/* Auth Pages */}
-            <Route path="/Register" element={<Register />} />
-            <Route path="/Login" element={<Login />} />
+            <Route element={<AuthCheck />}>
+              <Route path="/Register" element={<Register />} />
+              <Route path="/Login" element={<Login />} />
+            </Route>
 
             {/* Blog Pages */}
             <Route path="/Blogs" element={<Blogs />} />
-            <Route path="/Create" element={<Create />} />
             <Route path="/BlogDetail/:id" element={<BlogsDetail />} />
-            <Route path="/blog/MyBlogs" element={<MyBlogs />} />
-            <Route path="/blog/UpdateBlog/:id" element={<Update />} />
+            <Route element={<Protected />}>
+              <Route path="/Create" element={<Create />} />
+              <Route path="/blog/MyBlogs" element={<MyBlogs />} />
+              <Route path="/blog/UpdateBlog/:id" element={<Update />} />
+            </Route>
             <Route path="/Search" element={<Search />} />
+            <Route path="*" element={<Page404 />} />
           </Routes>
         </main>
       </div>
