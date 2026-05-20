@@ -48,10 +48,10 @@ function Blogs() {
         {/* Page Header */}
         <div className="text-center mb-12 sm:mb-16">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-4">
-            مقالات و وبلاگ‌ها
+            پست ها و وبلاگ ها
           </h1>
-          <p className="text-gray-300 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto leading-relaxed">
-            جدیدترین مقالات آموزشی و مطالب جذاب را مطالعه کنید.
+          <p dir="rtl" className="text-gray-300 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto leading-relaxed">
+            جدیدترین مطالب را مطالعه کنید.
           </p>
         </div>
 
@@ -91,8 +91,8 @@ function Blogs() {
                       </h2>
 
                       {/* Author */}
-                      <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-gray-300">
-                        <span>✍️</span>
+                      <div dir="rtl" className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-gray-300">
+                        {/* <span>✍️</span> */}
                         <span>نویسنده: {post.user.name}</span>
                       </div>
                     </div>
@@ -101,7 +101,7 @@ function Blogs() {
                     <div className="mt-6">
                       <Link to={`/BlogDetail/${post.id}`}>
                         <button className="group/btn relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-purple-600 via-fuchsia-600 to-indigo-600 px-5 py-3.5 text-white font-bold shadow-xl shadow-purple-900/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-purple-900/50 active:scale-[0.98]">
-                          <span className="relative z-10">مشاهده مقاله</span>
+                          <span className="relative z-10">مشاهده</span>
 
                           {/* Shine Effect */}
                           <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover/btn:translate-x-full" />
@@ -113,7 +113,7 @@ function Blogs() {
               );
             })}
         </div>
-        {!loading && (
+        {!loading && data.length > 0 && (
           <button
             onClick={showMore}
             className="w-full mt-6 overflow-hidden rounded-2xl bg-gradient-to-r from-cyan-600 via-green-600 to-blue-600 px-5 py-3.5 text-white font-bold shadow-xl shadow-purple-900/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-purple-900/50 active:scale-[0.98]"
@@ -139,10 +139,10 @@ function Blogs() {
               <span className="text-4xl">📝</span>
             </div>
             <h3 className="text-2xl font-bold text-white mb-3">
-              هنوز مقاله‌ای منتشر نشده است
+              هنوز پستی منتشر نشده است
             </h3>
-            <p className="text-gray-400">
-              به زودی مطالب جدید و جذابی در این بخش قرار خواهد گرفت.
+            <p dir="rtl" className="text-gray-400">
+              به زودی مطالب جدیدی در این بخش قرار خواهد گرفت.
             </p>
           </div>
         )}

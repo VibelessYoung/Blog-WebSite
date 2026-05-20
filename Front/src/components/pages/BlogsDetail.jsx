@@ -63,7 +63,7 @@ function BlogsDetail() {
                   <span className="text-white text-lg">✍️</span>
                 </div>
                 <div className="text-right">
-                  <p className="text-xs text-gray-400 mb-0.5">نویسنده مقاله</p>
+                  <p className="text-xs text-gray-400 mb-0.5">نویسنده</p>
                   <p className="font-semibold text-white">
                     {singleData && singleData.user.name}
                   </p>

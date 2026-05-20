@@ -85,11 +85,11 @@ function Create() {
               </div>
 
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-3">
-                ایجاد مقاله جدید
+                ایجاد پست جدید
               </h1>
 
               <p className="text-sm sm:text-base text-gray-300 leading-relaxed max-w-2xl mx-auto">
-                تصویر، عنوان و محتوای مقاله خود را وارد کنید و آن را منتشر کنید.
+                تصویر، عنوان و محتوای پست خود را وارد کنید و آن را منتشر کنید.
               </p>
             </div>
 
@@ -98,7 +98,7 @@ function Create() {
               {/* Image Upload */}
               <div className="space-y-2">
                 <label className="block text-sm font-medium text-gray-200">
-                  تصویر مقاله
+                  تصویر پست
                 </label>
 
                 <div className="rounded-2xl border border-dashed border-white/20 bg-white/5 p-4 sm:p-6 hover:bg-white/10 transition-colors duration-300">
@@ -129,7 +129,7 @@ function Create() {
               {/* Title */}
               <div className="space-y-2">
                 <label className="block text-sm font-medium text-gray-200">
-                  عنوان مقاله
+                  عنوان پست
                 </label>
 
                 <input
@@ -150,7 +150,7 @@ function Create() {
               {/* Description */}
               <div className="space-y-2">
                 <label className="block text-sm font-medium text-gray-200">
-                  محتوای مقاله
+                  محتوای پست
                 </label>
 
                 <textarea
@@ -175,7 +175,7 @@ function Create() {
                 type="submit"
                 className="group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-purple-600 via-fuchsia-600 to-indigo-600 px-6 py-4 text-white font-bold shadow-xl shadow-purple-900/40 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-purple-900/50 active:scale-[0.98]"
               >
-                <span className="relative z-10">انتشار مقاله</span>
+                <span className="relative z-10">انتشار پست</span>
 
                 {/* Shine Effect */}
                 <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />

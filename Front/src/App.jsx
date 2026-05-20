@@ -51,7 +51,7 @@ function AppContent() {
             </h1>
 
             <p className="mt-4 text-gray-300 text-sm sm:text-base lg:text-lg font-medium tracking-wide">
-              به ارشیو امیر اقا خوش امدید
+             وبسایت انشتار مقاله ، بلاگ و پست
             </p>
 
             <div className="mt-6 h-1 w-40 mx-auto rounded-full bg-gradient-to-r from-transparent via-purple-500 to-transparent" />

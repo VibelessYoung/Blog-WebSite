@@ -32,7 +32,6 @@ function Login() {
           confirmButtonText: "باشه",
         });
         navigate("/");
-        window.location.reload();
       } else {
         Swal.fire({
           icon: "error",
@@ -103,7 +102,10 @@ function Login() {
               <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">
                 ورود به حساب کاربری
               </h2>
-              <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
+              <p
+                dir="rtl"
+                className="text-sm sm:text-base text-gray-300 leading-relaxed"
+              >
                 برای ادامه، اطلاعات ورود خود را وارد کنید.
               </p>
             </div>

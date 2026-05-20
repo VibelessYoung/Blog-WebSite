@@ -64,10 +64,10 @@ function MyBlogs() {
         {/* Page Header */}
         <div className="text-center mb-12 sm:mb-16">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-4">
-            مقالات و وبلاگ‌ها
+            پست های شما
           </h1>
-          <p className="text-gray-300 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto leading-relaxed">
-            جدیدترین مقالات آموزشی و مطالب جذاب را مطالعه کنید.
+          <p dir="rtl" className="text-gray-300 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto leading-relaxed">
+            در اینجا پست هایی که منتشر کردید نمایش داده میشود و میتوانید آنهارا حذف و ویرایش کنید.
           </p>
         </div>
 
@@ -107,10 +107,10 @@ function MyBlogs() {
                       </h2>
 
                       {/* Author */}
-                      <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-gray-300">
+                      {/* <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-gray-300">
                         <span>✍️</span>
                         <span>نویسنده: {post.user?.name}</span>
-                      </div>
+                      </div> */}
                     </div>
 
                     {/* Button */}
