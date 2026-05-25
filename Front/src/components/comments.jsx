@@ -1,5 +1,4 @@
 import axios from "axios";
-import { div } from "framer-motion/client";
 import React from "react";
 import { useEffect, useState } from "react";
 import { VscGlobe } from "react-icons/vsc";
@@ -7,25 +6,32 @@ import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
 function Comments() {
+  //STATES
   const [description, setDescription] = useState("");
   const [comment, setComment] = useState([]);
+  //GET USER ID
   let user_id = localStorage.getItem("auth_userid");
   const { id } = useParams();
+  //RESET FOR DESCRIPTION
   const reset = () => {
     setDescription("");
   };
+  //GET COMMENT
   const getComment = () => {
     axios.get("/api/comment-view/" + id).then((res) => {
       setComment(res.data);
     });
   };
   const handleSubmit = async (e) => {
+    //NOT REFRESH
     e.preventDefault();
+    //DATA
     const data = {
       description: description,
       blog_id: id,
       user_id: user_id,
     };
+    //POST COMMENT
     await axios.post("/api/comment", data).then((res) => {
       if (res.data.status === 200) {
         Swal.fire({
@@ -37,6 +43,7 @@ function Comments() {
         reset();
         getComment();
       } else {
+        //ERROR HANDLING
         Swal.fire({
           icon: "error",
           title: "خطا",
@@ -46,6 +53,7 @@ function Comments() {
       }
     });
   };
+  //USEEFFECT
   useEffect(() => {
     getComment();
   }, []);

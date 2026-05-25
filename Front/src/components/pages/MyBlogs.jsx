@@ -5,8 +5,10 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 function MyBlogs() {
+  //STATE FOR LOADING
   const [loading, setLoading] = useState(true);
   const handleClick = async (id) => {
+    //DELETE
     await axios.delete(`/api/blog/${id}`).then((res) => {
       if (res.data.status === 200) {
         Swal.fire({
@@ -17,6 +19,7 @@ function MyBlogs() {
         });
         loadData();
       } else {
+        //ERROR HANDLING
         Swal.fire({
           icon: "error",
           title: "خطا",
@@ -29,7 +32,9 @@ function MyBlogs() {
   };
   const loadData = async () => {
     setLoading(true);
+    //GET USER ID
     let id = localStorage.getItem("auth_userid");
+    //GET DATA
     await axios
       .get(`/api/blog/${id}`)
       .then((res) => {
@@ -39,6 +44,7 @@ function MyBlogs() {
         setLoading(false);
       });
   };
+  //STATE FOR DATA
   const [data, setData] = useState([]);
   useEffect(() => {
     loadData();
@@ -66,8 +72,12 @@ function MyBlogs() {
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-4">
             پست های شما
           </h1>
-          <p dir="rtl" className="text-gray-300 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto leading-relaxed">
-            در اینجا پست هایی که منتشر کردید نمایش داده میشود و میتوانید آنهارا حذف و ویرایش کنید.
+          <p
+            dir="rtl"
+            className="text-gray-300 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto leading-relaxed"
+          >
+            در اینجا پست هایی که منتشر کردید نمایش داده میشود و میتوانید آنهارا
+            حذف و ویرایش کنید.
           </p>
         </div>
 

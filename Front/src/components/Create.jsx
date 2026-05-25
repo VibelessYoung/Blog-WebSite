@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { Navigate, useNavigate } from "react-router-dom";
 
 function Create() {
+  //STATES
   const [image, setImage] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -13,25 +14,32 @@ function Create() {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
+    //NOT REFRESH
     e.preventDefault();
+    //FORM DATA
     const formData = new FormData();
     formData.append("image", image);
     formData.append("title", title);
     formData.append("description", description);
     formData.append("user_id", user_id);
+    //POST
     await axios
       .post("/api/blog", formData)
       .then((res) => {
         console.log(res);
+        //STATUS CHECKING
         if (res.data.status === 200) {
+          //USE SWAL
           Swal.fire({
             icon: "success",
             title: "ارسال موفقیت امیز بود",
             text: res.data.message,
             confirmButtonText: "باشه",
           });
+          //BACK TO HOME PAGE
           navigate("/");
         } else {
+          //ERROR HANDLING
           setError(res.data.errors);
           Swal.fire({
             icon: "error",
@@ -41,6 +49,7 @@ function Create() {
           });
         }
       })
+      //ERROR HANDLING
       .catch(() => {
         Swal.fire({
           icon: "error",

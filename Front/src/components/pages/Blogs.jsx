@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 function Blogs() {
+  //STATES
   const [data, setData] = useState([]);
   const [visible, setVisible] = useState(3);
   const [loading, setLoading] = useState(true);
 
+  //SHOW MORE'S FUNCTION FOR SHOW MORE BTN
   const showMore = () => {
     setVisible((value) => {
       value + 3;
@@ -16,6 +18,7 @@ function Blogs() {
   useEffect(() => {
     const handlePost = async () => {
       setLoading(true);
+      //GET DATA
       const res = axios
         .get("/api/view-blog")
         .then((res) => {
@@ -50,7 +53,10 @@ function Blogs() {
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-4">
             پست ها و وبلاگ ها
           </h1>
-          <p dir="rtl" className="text-gray-300 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p
+            dir="rtl"
+            className="text-gray-300 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto leading-relaxed"
+          >
             جدیدترین مطالب را مطالعه کنید.
           </p>
         </div>
@@ -91,7 +97,10 @@ function Blogs() {
                       </h2>
 
                       {/* Author */}
-                      <div dir="rtl" className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-gray-300">
+                      <div
+                        dir="rtl"
+                        className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-gray-300"
+                      >
                         {/* <span>✍️</span> */}
                         <span>نویسنده: {post.user.name}</span>
                       </div>

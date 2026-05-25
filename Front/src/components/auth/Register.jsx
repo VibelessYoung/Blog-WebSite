@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { Navigate, useNavigate } from "react-router-dom";
 
 function Register() {
+  //STATES
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,10 +13,12 @@ function Register() {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
+    //NOT REFRESH
     e.preventDefault();
     const data = { name, email, password };
 
     try {
+      //POST DATA
       const res = await axios.post("/api/register", data);
       if (res.data.status === 200) {
         Swal.fire({
@@ -24,6 +27,7 @@ function Register() {
           text: res.data.messages || "حساب شما با موفقیت ایجاد شد",
           confirmButtonText: "باشه",
         });
+        //GOT LOGIN PAGE AND CLEAR SET ERROR
         navigate("/Login");
         setError({});
       } else {
@@ -89,7 +93,10 @@ function Register() {
               <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">
                 ایجاد حساب کاربری
               </h2>
-              <p dir="rtl" className="text-sm sm:text-base text-gray-300 leading-relaxed">
+              <p
+                dir="rtl"
+                className="text-sm sm:text-base text-gray-300 leading-relaxed"
+              >
                 برای شروع، اطلاعات خود را وارد کنید و حساب جدید بسازید.
               </p>
             </div>

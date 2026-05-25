@@ -3,11 +3,14 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Search() {
+  //STATE
   const [data, setData] = useState([]);
+  //SEARCH FUNCTION
   async function searchFunction(key) {
     if (key === "") {
       setData([]);
     } else {
+      //GET DATA
       await axios.get("/api/search/" + key).then((res) => {
         setData(res.data);
       });

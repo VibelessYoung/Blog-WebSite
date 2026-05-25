@@ -5,9 +5,11 @@ import bgImage from "../../assets/Images/bg-l.jpg";
 import Comments from "../comments";
 
 function BlogsDetail() {
+  //STATE
   const [singleData, setSingleData] = useState();
   const { id } = useParams();
   useEffect(() => {
+    //GET DATA
     axios.get(`/api/detail-blog/${id}`).then((res) => {
       setSingleData(res.data.blog);
     });

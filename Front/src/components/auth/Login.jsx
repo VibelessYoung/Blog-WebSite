@@ -7,11 +7,13 @@ import { Navigate, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
 function Login() {
+  //STATE
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
+    //NOT REFRESH
     e.preventDefault();
     const data = { email, password };
 
@@ -19,9 +21,9 @@ function Login() {
       await axios.get("/sanctum/csrf-cookie");
 
       const res = await axios.post("http://localhost:8000/api/login", data);
-      console.log(res);
 
       if (res.data.status === 200) {
+        //SET COOKIES
         Cookies.set("token", res.data.token);
         localStorage.setItem("user_name", res.data.username);
         localStorage.setItem("auth_userid", res.data.user_id);
@@ -31,8 +33,10 @@ function Login() {
           text: res.data.message,
           confirmButtonText: "باشه",
         });
+        //BACK TO HOME PAGE
         navigate("/");
       } else {
+        //ERROR HANDLING
         Swal.fire({
           icon: "error",
           title: "خطا",
@@ -40,8 +44,7 @@ function Login() {
           confirmButtonText: "باشه",
         });
       }
-    } catch (err) {
-      console.log(err);
+    } catch {
       Swal.fire({
         icon: "error",
         title: "خطای سرور",

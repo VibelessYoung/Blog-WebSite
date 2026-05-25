@@ -6,6 +6,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 function Update() {
+  //STATES
   const [image, setImage] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -15,6 +16,7 @@ function Update() {
   const navigate = useNavigate();
   useEffect(() => {
     const handleData = async () => {
+      //GET DATA
       await axios.get(`api/blog/edit/${id}`).then((res) => {
         setData(res.data);
         setImage(res.data.image);
@@ -25,12 +27,15 @@ function Update() {
     handleData();
   }, []);
   const handleSubmit = async (e) => {
+    //NOT REFRESH
     e.preventDefault();
+    //SEND DATA FOR UPDATE
     let formData = new FormData();
     formData.append("image", image);
     formData.append("title", title);
     formData.append("description", description);
     await axios.post(`/api/blog/update/${id}`, formData).then((res) => {
+      //STATUS CHECKING
       if (res.data.status === 200) {
         Swal.fire({
           icon: "success",
@@ -41,6 +46,7 @@ function Update() {
         navigate("/blog/MyBlogs");
         setError({});
       } else {
+        //ERROR HANDLING
         Swal.fire({
           icon: "error",
           title: "خطا",
