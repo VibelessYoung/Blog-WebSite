@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import bgImage from "../../assets/Images/bg-l.jpg";
 import { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { Navigate, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import { AuthContext } from "../context/AuthContext";
 
 function Login() {
   //STATE
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { setUser } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     //NOT REFRESH
@@ -32,6 +34,13 @@ function Login() {
           title: "ورود موفقیت آمیز بود",
           text: res.data.message,
           confirmButtonText: "باشه",
+        });
+        setUser({
+          id: res.data.user_id,
+
+          name: res.data.username,
+
+          email,
         });
         //BACK TO HOME PAGE
         navigate("/");

@@ -122,7 +122,7 @@ function Blogs() {
               );
             })}
         </div>
-        {!loading && data.length > 0 && (
+        {!loading && data.length > 3 && (
           <button
             onClick={showMore}
             className="w-full mt-6 overflow-hidden rounded-2xl bg-gradient-to-r from-cyan-600 via-green-600 to-blue-600 px-5 py-3.5 text-white font-bold shadow-xl shadow-purple-900/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-purple-900/50 active:scale-[0.98]"
