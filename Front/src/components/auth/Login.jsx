@@ -32,6 +32,8 @@ function Login() {
           title: "ورود موفقیت آمیز بود",
           text: res.data.message,
           confirmButtonText: "باشه",
+        }).then(() => {
+          window.location.href = "/";
         });
         //BACK TO HOME PAGE
         navigate("/");

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { VscGlobe } from "react-icons/vsc";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 function Comments() {
   //STATES
@@ -125,47 +126,65 @@ function Comments() {
       </div>
 
       {/* Comment Form */}
-      <form
-        onSubmit={handleSubmit}
-        className="mt-16 sm:mt-20 overflow-hidden rounded-3xl border border-white/10 bg-white/10 backdrop-blur-2xl shadow-[0_25px_80px_rgba(0,0,0,0.45)]"
-      >
-        {/* Top Accent */}
-        <div className="h-1 w-full bg-gradient-to-r from-purple-500 via-fuchsia-500 to-indigo-500" />
+      {user_id ? (
+        <form
+          onSubmit={handleSubmit}
+          className="mt-16 sm:mt-20 overflow-hidden rounded-3xl border border-white/10 bg-white/10 backdrop-blur-2xl shadow-[0_25px_80px_rgba(0,0,0,0.45)]"
+        >
+          {/* Top Accent */}
+          <div className="h-1 w-full bg-gradient-to-r from-purple-500 via-fuchsia-500 to-indigo-500" />
 
-        {/* Form Content */}
-        <div className="p-6 sm:p-8 lg:p-10">
-          {/* Form Header */}
-          <div className="text-center mb-8">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">
-              نظرتو بنویس ✍️
-            </h2>
+          <div className="p-6 sm:p-8 lg:p-10">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">
+                نظرتو بنویس ✍️
+              </h2>
 
-            <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
-              تجربه و دیدگاهت رو با بقیه به اشتراک بگذار.
-            </p>
+              <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
+                تجربه و دیدگاهت رو با بقیه به اشتراک بگذار.
+              </p>
+            </div>
+
+            <textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              rows="6"
+              placeholder="نظر خود را اینجا بنویسید..."
+              className="w-full resize-none rounded-2xl border border-white/10 bg-white/10 px-4 py-4 text-white placeholder-gray-400 outline-none transition-all duration-300 focus:border-purple-400 focus:bg-white/15 focus:ring-4 focus:ring-purple-500/20"
+            />
+
+            <button
+              type="submit"
+              className="group relative mt-5 w-full overflow-hidden rounded-2xl bg-gradient-to-r from-purple-600 via-fuchsia-600 to-indigo-600 px-6 py-4 text-white font-bold shadow-xl shadow-purple-900/40 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-purple-900/50 active:scale-[0.98]"
+            >
+              <span className="relative z-10">ارسال نظر</span>
+            </button>
           </div>
+        </form>
+      ) : (
+        <div className="mt-16 rounded-3xl border border-yellow-500/20 bg-yellow-500/10 p-8 text-center">
+          <h3 className="text-xl font-bold text-white mb-3">
+            برای ثبت نظر ابتدا وارد حساب کاربری شوید
+          </h3>
 
-          {/* Textarea */}
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            rows="6"
-            placeholder="نظر خود را اینجا بنویسید..."
-            className="w-full resize-none rounded-2xl border border-white/10 bg-white/10 px-4 py-4 text-white placeholder-gray-400 outline-none transition-all duration-300 focus:border-purple-400 focus:bg-white/15 focus:ring-4 focus:ring-purple-500/20"
-          />
+          <p className="text-gray-300 mb-5">
+            فقط کاربران وارد شده می‌توانند دیدگاه ثبت کنند.
+          </p>
 
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="group relative mt-5 w-full overflow-hidden rounded-2xl bg-gradient-to-r from-purple-600 via-fuchsia-600 to-indigo-600 px-6 py-4 text-white font-bold shadow-xl shadow-purple-900/40 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-purple-900/50 active:scale-[0.98]"
+          <Link
+            to="/login"
+            className="inline-flex items-center rounded-xl bg-purple-600 px-6 py-3 text-white font-semibold hover:bg-purple-700 transition"
           >
-            <span className="relative z-10">ارسال نظر</span>
-
-            {/* Shine Effect */}
-            <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-          </button>
+            ورود به حساب کاربری
+          </Link>
+          <Link
+            to="/login"
+            className="inline-flex m-2 items-center rounded-xl bg-purple-600 px-6 py-3 text-white font-semibold hover:bg-purple-700 transition"
+          >
+            ایجاد حساب کاربری
+          </Link>
         </div>
-      </form>
+      )}
     </div>
   );
 }
